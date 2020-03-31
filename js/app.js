@@ -7,7 +7,9 @@ $(document).ready(function () {
         this.description = horn.description;
         this.keyword = horn.keyword;
         this.horns = horn.horns;
+        Gallery.all.push(this);
     }
+    Gallery.all = [];
     Gallery.prototype.render = function () {
         let $hornClone = $('#photo-template').clone();
 
@@ -16,18 +18,32 @@ $(document).ready(function () {
         $hornClone.find('p').text(this.description);
 
         $hornClone.removeAttr('id');
-        $hornClone.attr('id', this.keyword);
+        // $hornClone.remove();
+        $hornClone.attr('id', this.title);
+        $hornClone.addClass(this.keyword)
         $('main').append($hornClone);
-        console.log($hornClone);
     }
     const readJson = () => {
         $.ajax('../data/page-1.json', { method: 'GET', dataType: 'JSON' }).then(data => {
             data.forEach(items => {
                 let horn = new Gallery(items);
                 horn.render();
-                console.log(horn);
             });
-        });
+        }).then(() => selectOption());
     };
     readJson();
+
+    let $hornSelect = $('select');
+    const selectOption = function () {
+        Gallery.all.forEach(picByKeyword => {
+            let $option = `<option value="${picByKeyword.keyword}">${picByKeyword.keyword}<option>`
+            $hornSelect.append($option);
+        });
+    }
+
+    $hornSelect.on('change', function () {
+        let $theSelect = $(this).val();
+        $('section').hide();
+        $(`.${$theSelect}`).show();
+    });
 });
