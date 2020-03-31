@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
+
+section img{
+    width: 300px;
+    height: 300px;
+}
+
+h2{
+    text-align: center;
+    padding-bottom: 20px;
+    color: rgb(1, 32, 20);
+}
+
+p{
+    padding-top: 20px;
+    color: rgb(5, 5, 59);
+    text-align: justify;
+}
+
+header select option{
+    font-family: 'Dancing Script', cursive;
+}
