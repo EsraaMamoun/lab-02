@@ -24,7 +24,7 @@ $(document).ready(function () {
         $('main').append($hornClone);
     }
     const readJson = () => {
-        $.ajax('../data/page-1.json', { method: 'GET', dataType: 'JSON' }).then(data => {
+        $.ajax('data/page-1.json', { method: 'GET', dataType: 'JSON' }).then(data => {
             data.forEach(items => {
                 let horn = new Gallery(items);
                 horn.render();
