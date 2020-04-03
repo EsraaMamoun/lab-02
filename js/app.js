@@ -16,11 +16,8 @@ $(document).ready(function () {
         $hornClone.find('h2').text(this.title);
         $hornClone.find('img').attr('src', this.image_url);
         $hornClone.find('p').text(this.description);
-
         $hornClone.removeAttr('id');
-        // $hornClone.remove();
-        $hornClone.attr('id', this.title);
-        $hornClone.addClass(this.keyword)
+        $hornClone.attr('class', this.keyword);
         $('main').append($hornClone);
     }
     const readJson = () => {
@@ -35,9 +32,13 @@ $(document).ready(function () {
 
     let $hornSelect = $('select');
     const selectOption = function () {
+        let theHorns = [];
         Gallery.all.forEach(picByKeyword => {
-            let $option = `<option value="${picByKeyword.keyword}">${picByKeyword.keyword}<option>`
-            $hornSelect.append($option);
+            if (!theHorns.includes(picByKeyword.keyword)) {
+                theHorns.push(picByKeyword.keyword);
+                let $option = `<option value="${picByKeyword.keyword}">${picByKeyword.keyword}</option>`;
+                $hornSelect.append($option);
+            }
         });
     }
 
