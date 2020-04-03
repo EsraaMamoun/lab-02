@@ -20,3 +20,7 @@ p{
 header select option{
     font-family: 'Dancing Script', cursive;
 }
+
+#photo-template{
+    display: none;
+}
